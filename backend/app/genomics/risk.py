@@ -1,65 +1,46 @@
 """
 risk.py
 
-This file maps phenotype → drug recommendations
+This file converts gene phenotype results
+into drug recommendations using rules.py
 """
+
+from rules import DRUG_RULES
 
 
 def get_drug_recommendations(gene_results):
     """
     Input:
         [
-            {"gene": "CYP2D6", "phenotype": "Poor Metabolizer"},
-            {"gene": "CYP2C19", "phenotype": "Rapid Metabolizer"}
+            {"gene": "CYP2D6", "stars": [...], "phenotype": "Poor Metabolizer"}
         ]
 
     Output:
         [
-            {"gene": "CYP2D6", "drug": "Codeine", "recommendation": "Avoid"},
-            {"gene": "CYP2C19", "drug": "Clopidogrel", "recommendation": "Increase Dose"}
+            {"gene": "CYP2D6", "drug": "Codeine", "recommendation": "Avoid"}
         ]
     """
 
     recommendations = []
 
     for result in gene_results:
-        gene = result["gene"]
-        phenotype = result["phenotype"]
+        gene = result.get("gene")
+        phenotype = result.get("phenotype")
 
-        # ========================
-        # CYP2D6 Drug Rules
-        # ========================
-        if gene == "CYP2D6":
-            if phenotype == "Poor Metabolizer":
-                recommendations.append({
-                    "gene": gene,
-                    "drug": "Codeine",
-                    "recommendation": "Avoid – reduced activation"
-                })
+        # Check if gene exists in rules
+        if gene in DRUG_RULES:
 
-            if phenotype == "Intermediate Metabolizer":
-                recommendations.append({
-                    "gene": gene,
-                    "drug": "Amitriptyline",
-                    "recommendation": "Consider lower dose"
-                })
+            gene_rules = DRUG_RULES[gene]
 
-        # ========================
-        # CYP2C19 Drug Rules
-        # ========================
-        if gene == "CYP2C19":
-            if phenotype == "Poor Metabolizer":
-                recommendations.append({
-                    "gene": gene,
-                    "drug": "Clopidogrel",
-                    "recommendation": "Use alternative drug"
-                })
+            # Check if phenotype exists for that gene
+            if phenotype in gene_rules:
 
-            if phenotype == "Rapid Metabolizer":
-                recommendations.append({
-                    "gene": gene,
-                    "drug": "Omeprazole",
-                    "recommendation": "May need higher dose"
-                })
+                for drug_rule in gene_rules[phenotype]:
+                    recommendations.append({
+                        "gene": gene,
+                        "phenotype": phenotype,
+                        "drug": drug_rule["drug"],
+                        "recommendation": drug_rule["recommendation"]
+                    })
 
     return recommendations
