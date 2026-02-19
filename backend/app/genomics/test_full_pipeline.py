@@ -50,7 +50,7 @@ def build_final_json(variants, analyzed, rule_results, risk_score):
 
 def main():
     # 🔴 CHANGE ONLY THIS PATH
-    vcf_path = r"C:\Users\shakt\OneDrive\Desktop\RIFT\TeamMoon_RIFT-26\sample_vcfs\PGx_Test_600_Variants.vcf"
+    vcf_path = r"sample_vcfs\PGx_Test_600_Variants.vcf"
 
     # STEP 1: Parse VCF
     variants = parse_vcf(vcf_path)
