@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import { FaBrain, FaLightbulb, FaMicrochip, FaBook } from 'react-icons/fa'
 import './FeaturePage.css'
@@ -7,7 +6,6 @@ import './FeaturePage.css'
 const AiInsightsPage = () => {
   return (
     <>
-      <Navbar />
 
       <div className="feature-page">
 

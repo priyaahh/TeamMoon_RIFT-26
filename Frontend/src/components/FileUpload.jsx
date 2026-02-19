@@ -1,24 +1,29 @@
 import React, { useState, useRef } from 'react'
 import { FaCloudUploadAlt, FaFile, FaTimes, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
-import { validateVCFFile } from '../utils/validateVCF'
+import { validateVCFFile, MAX_FILE_SIZE } from '../utils/validateVCF'
 import './FileUpload.css'
 
-export const FileUpload = ({ onFileSelect, disabled = false }) => {
+export const FileUpload = ({ onFileSelect = () => { }, disabled = false }) => {
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState([])
   const [isDragging, setIsDragging] = useState(false)
+  const [fileSizePercent, setFileSizePercent] = useState(0)
   const fileInputRef = useRef(null)
 
   const handleFile = (selectedFile) => {
     const validation = validateVCFFile(selectedFile)
 
+    // Calculate percentage
+    const sizeMB = selectedFile.size / (1024 * 1024)
+    const maxMB = MAX_FILE_SIZE / (1024 * 1024)
+    setFileSizePercent(Math.min((sizeMB / maxMB) * 100, 100))
+
+    setFile(selectedFile)
+    setErrors(validation.errors)
+
     if (validation.isValid) {
-      setFile(selectedFile)
-      setErrors([])
       onFileSelect(selectedFile)
     } else {
-      setErrors(validation.errors)
-      setFile(null)
       onFileSelect(null)
     }
   }
@@ -55,6 +60,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
     e.stopPropagation()
     setFile(null)
     setErrors([])
+    setFileSizePercent(0)
     onFileSelect(null)
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
@@ -72,7 +78,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
   if (isDragging) containerClass += " dragging"
   if (disabled) containerClass += " disabled"
   if (errors.length > 0) containerClass += " error"
-  if (file) containerClass += " success"
+  else if (file) containerClass += " success"
 
   return (
     <div className={containerClass} onClick={triggerFileInput}>
@@ -92,7 +98,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
                 <span>{errors[0]}</span>
               </div>
             )}
-            <p className="file-hint">Max file size: 10 MB</p>
+            <p className="file-hint">Max file size: {MAX_FILE_SIZE / (1024 * 1024)} MB</p>
           </>
         ) : (
           <div className="file-preview">
@@ -101,10 +107,31 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
             </div>
             <div className="file-details">
               <p className="file-name">{file.name}</p>
-              <p className="file-size">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+
+              <div className="file-progress">
+                <div
+                  className={`progress-bar ${errors.length > 0 && file.size > MAX_FILE_SIZE ? 'over' : ''}`}
+                  style={{ width: `${fileSizePercent}%` }}
+                />
+              </div>
+
+              <p className="file-size">
+                {(file.size / (1024 * 1024)).toFixed(2)} MB / {MAX_FILE_SIZE / (1024 * 1024)} MB
+              </p>
+
+              {errors.length > 0 && (
+                <div className="validation-message error" style={{ justifyContent: 'flex-start', marginTop: '8px' }}>
+                  <FaExclamationCircle />
+                  <span className="error-text">{errors[0]}</span>
+                </div>
+              )}
             </div>
             <div className="validation-status">
-              <FaCheckCircle className="check-icon" />
+              {errors.length > 0 ? (
+                <FaExclamationCircle className="error-icon" style={{ color: '#ef4444' }} />
+              ) : (
+                <FaCheckCircle className="check-icon" />
+              )}
             </div>
             <button
               className="btn-remove"
@@ -120,7 +147,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
       <input
         ref={fileInputRef}
         type="file"
-        accept=".vcf"
+        accept=".vcf,.vcf.gz"
         onChange={handleInputChange}
         style={{ display: 'none' }}
         disabled={disabled}

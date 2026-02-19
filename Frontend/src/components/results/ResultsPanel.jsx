@@ -1,6 +1,5 @@
 import React from 'react'
-import { RiskSummary } from './RiskSummary'
-import { RiskAccordion } from './RiskAccordion'
+import RiskVisualizer from './visualizer/RiskVisualizer'
 import { DownloadSection } from './DownloadSection'
 import './ResultsPanel.css'
 
@@ -18,15 +17,7 @@ export const ResultsPanel = ({ results }) => {
 
     return (
         <div className="results-panel animate-slide-up">
-            <RiskSummary results={resultsArray} />
-
-            <div className="results-divider"></div>
-
-            <div className="detailed-results">
-                {resultsArray.map((result, index) => (
-                    <RiskAccordion key={index} data={result} />
-                ))}
-            </div>
+            <RiskVisualizer results={resultsArray} />
 
             <div className="results-divider"></div>
 

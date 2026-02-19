@@ -1,2 +1,49 @@
 /* Footer styles live in App.css via .app-footer */
 
+.app-footer {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.footer-section p,
+.footer-section li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section a {
+    text-decoration: none;
+    color: #262965fa;
+    transition: color 0.2s;
+}
+
+.footer-section a:hover {
+    color: #2a322e;
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #656363;
+}

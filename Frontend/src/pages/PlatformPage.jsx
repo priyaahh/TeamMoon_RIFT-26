@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import { FileUpload } from '../components/FileUpload'
 import { DrugInput } from '../components/DrugInput'
@@ -82,7 +81,6 @@ const PlatformPage = () => {
 
   return (
     <>
-      <Navbar />
 
       <div className="platform-page">
         <div className="platform-container">

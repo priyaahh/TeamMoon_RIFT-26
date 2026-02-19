@@ -27,12 +27,6 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/results-display">
             Results
           </NavLink>
-          <NavLink className="nav-link" to="/export-share">
-            Export
-          </NavLink>
-          <NavLink className="nav-link" to="/cpic">
-            CPIC
-          </NavLink>
         </div>
 
         <div className="navbar-actions" />

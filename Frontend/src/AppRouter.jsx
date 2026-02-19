@@ -11,7 +11,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import VcfUploadPage from './pages/VcfUploadPage'
 import DrugInputPage from './pages/DrugInputPage'
 import ResultsDisplayPage from './pages/ResultsDisplayPage'
-import ExportSharePage from './pages/ExportSharePage'
+
 import ErrorHandlingPage from './pages/ErrorHandlingPage'
 import AiInsightsPage from './pages/AiInsightsPage'
 
@@ -28,7 +28,6 @@ const router = createBrowserRouter([
       { path: 'vcf-upload', element: <VcfUploadPage /> },
       { path: 'drug-input', element: <DrugInputPage /> },
       { path: 'results-display', element: <ResultsDisplayPage /> },
-      { path: 'export-share', element: <ExportSharePage /> },
       { path: 'error-handling', element: <ErrorHandlingPage /> },
       { path: 'ai-insights', element: <AiInsightsPage /> },
       { path: '*', element: <NotFoundPage /> },

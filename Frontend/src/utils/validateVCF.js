@@ -3,7 +3,7 @@
  * Validates VCF file format, size, and structure
  */
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5 MB
+export const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50 MB
 
 /**
  * Validates VCF file format and size
@@ -15,13 +15,14 @@ export const validateVCFFile = (file) => {
   const warnings = []
 
   // Check file extension
-  if (!file.name.toLowerCase().endsWith('.vcf')) {
-    errors.push('File must have .vcf extension')
+  const isValidType = file.name.toLowerCase().endsWith('.vcf') || file.name.toLowerCase().endsWith('.vcf.gz');
+  if (!isValidType) {
+    errors.push('Invalid file type. Please upload a .vcf or .vcf.gz file.')
   }
 
   // Check file size
   if (file.size > MAX_FILE_SIZE) {
-    errors.push(`File size exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit`)
+    errors.push(`File too large. Max allowed size is ${MAX_FILE_SIZE / 1024 / 1024} MB.`)
   }
 
   if (file.size === 0) {
@@ -56,7 +57,7 @@ export const parseVCFContent = (content) => {
   // Parse headers
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim()
-    
+
     if (line.startsWith('##')) {
       headers.push(line)
     } else if (line.startsWith('#CHROM')) {

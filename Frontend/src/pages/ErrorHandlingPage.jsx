@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import {
   FaExclamationTriangle,
@@ -12,7 +11,6 @@ import './FeaturePage.css'
 const ErrorHandlingPage = () => {
   return (
     <>
-      <Navbar />
 
       <div className="feature-page">
 

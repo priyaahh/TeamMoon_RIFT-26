@@ -286,12 +286,15 @@
 /* Footer */
 .app-footer {
   margin-top: auto;
-  padding: var(--space-2xl) var(--space-md);
+  padding: var(--space-md) var(--space-md);
+  /* Reduced padding */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   color: var(--color-text-tertiary);
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  /* Ensure full width */
 }
 
 .app-footer p {

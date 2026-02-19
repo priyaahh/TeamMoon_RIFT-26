@@ -13,11 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Spread items (Logo ----- Links ----- Actions) */
+  gap: var(--space-lg);
 }
 
 .navbar-logo {
   font-family: var(--font-family-sans);
-  font-size: 1.35rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
@@ -32,7 +34,7 @@
 }
 
 .logo-icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .navbar-subtitle {
@@ -44,15 +46,23 @@
   display: flex;
   gap: var(--space-lg);
   align-items: center;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {
   color: var(--color-text-secondary);
   font-weight: 500;
-  font-size: var(--font-size-sm);
+  font-size: 1.2rem;
   transition: color 0.2s ease;
   padding: 0.35rem 0.5rem;
   border-radius: 9999px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 110px;
+  /* Enforce uniform width */
+  text-align: center;
+  /* Center text within the fixed width */
 }
 
 .nav-link:hover {

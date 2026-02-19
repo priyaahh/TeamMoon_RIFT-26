@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaTimes, FaPlus, FaExclamationTriangle } from 'react-icons/fa'
+import { FaTimes, FaPlus, FaExclamationTriangle, FaSearch } from 'react-icons/fa'
 import { validateDrugInput } from '../utils/validateVCF'
 import './DrugInput.css'
 
@@ -105,8 +105,11 @@ export const DrugInput = ({
 
   const getFilteredSuggestions = () => {
     const input = inputValue.trim().toUpperCase()
-    // Don't show all initially, only on type
-    if (!input) return []
+
+    // Show all supported drugs if input is empty, filtering out already selected ones
+    if (!input) {
+      return supportedDrugs.filter(drug => !drugs.includes(drug))
+    }
 
     return supportedDrugs.filter(
       (drug) => drug.includes(input) && !drugs.includes(drug)
@@ -123,6 +126,7 @@ export const DrugInput = ({
 
       <div className="input-area">
         <div className="search-wrapper">
+          <FaSearch className="search-icon" />
           <input
             type="text"
             className={`drug-search-input ${errors.length > 0 ? 'error' : ''}`}
@@ -130,7 +134,7 @@ export const DrugInput = ({
             value={inputValue}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
-            onFocus={() => inputValue && setShowSuggestions(true)}
+            onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             disabled={disabled}
             autoComplete="off"

@@ -29,13 +29,34 @@
   align-items: center;
 }
 
+.search-icon {
+  position: absolute;
+  left: var(--space-md);
+  color: var(--color-text-tertiary);
+  /* Will be darker via new variable if needed, or check theme */
+  font-size: 1rem;
+  z-index: 1;
+}
+
 .drug-search-input {
   width: 100%;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-md) var(--space-lg) var(--space-md) 2.5rem;
+  /* Left padding for icon */
   border: 1px solid var(--color-border-medium);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
+  color: #374151;
+  /* Gray-700 */
+  /* Ensure this is dark enough */
+  font-weight: 500;
+  /* Make text slightly bolder/darker perception */
   transition: all 0.2s;
+}
+
+.drug-search-input::placeholder {
+  color: var(--color-text-secondary);
+  /* Ensure placeholder is visible but distinct */
+  opacity: 1;
 }
 
 .drug-search-input:focus {
@@ -93,7 +114,9 @@
   background: none;
   cursor: pointer;
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-gray-700);
+  /* Darker shade */
+  font-weight: 500;
 }
 
 .suggestion-item:hover {
