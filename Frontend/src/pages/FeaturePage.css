@@ -68,22 +68,44 @@ html {
 }
 
 .info-section {
-  margin-top: var(--space-2xl);
-  padding-top: var(--space-2xl);
+  margin-top: 0;
+  padding-top: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .info-section:first-of-type {
   border-top: none;
-  padding-top: 0;
+}
+
+/* Reduce spacing after lists and paragraphs */
+.info-section p,
+.info-section ul,
+.info-section ol {
   margin-top: 0;
+  margin-bottom: 0; /* Remove extra bottom gap */
+}
+
+.info-section ul li,
+.info-section ol li {
+  margin-bottom: var(--space-sm);
+}
+
+.info-section ul li:last-child,
+.info-section ol li:last-child {
+  margin-bottom: 0;
+}
+
+/* Reduce spacing between consecutive info-sections */
+.info-section + .info-section {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .info-section h3 {
   font-size: 1.2rem;
   font-weight: 700;
   color: rgba(14, 165, 233, 0.9);
-  margin-bottom: var(--space-md);
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -95,7 +117,6 @@ html {
 
 .info-section p {
   color: rgba(241, 245, 249, 0.8);
-  margin-bottom: var(--space-md);
   line-height: 1.7;
   font-size: 0.95rem;
 }
@@ -104,13 +125,9 @@ html {
 .info-section ol {
   list-style-position: inside;
   color: rgba(241, 245, 249, 0.75);
-  line-height: 2;
+  line-height: 1.5;
   font-size: 0.95rem;
-}
-
-.info-section ul li,
-.info-section ol li {
-  margin-bottom: var(--space-sm);
+  padding-left: 1rem; /* Optional: proper indentation */
 }
 
 .info-section ul li strong,
@@ -123,6 +140,7 @@ html {
   content: ':';
 }
 
+/* Risk Levels */
 .risk-levels {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -178,6 +196,75 @@ html {
   margin: 0;
 }
 
+/* Export & Share Grid */
+.export-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-2xl);
+  margin-top: var(--space-2xl);
+}
+
+.export-card {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.export-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 12px 35px rgba(56, 189, 248, 0.2);
+}
+
+.export-icon {
+  font-size: 2.5rem;
+  color: #0ea5e9;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.export-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--space-sm);
+}
+
+.export-card p {
+  color: rgba(241, 245, 249, 0.85);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.export-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.export-card li {
+  color: rgba(241, 245, 249, 0.75);
+  font-size: 0.9rem;
+  padding: var(--space-xs) 0;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.export-card li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #0ea5e9;
+  font-weight: 700;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .feature-page {
     padding: var(--space-lg) var(--space-sm);
@@ -201,5 +288,14 @@ html {
 
   .info-section h3 {
     font-size: 1rem;
+  }
+
+  .export-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .export-card {
+    padding: var(--space-lg);
   }
 }

@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { FaHeartbeat, FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaHeartbeat } from 'react-icons/fa'
 import { Link, NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
@@ -15,43 +15,27 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/">
             Home
           </NavLink>
-          <NavLink className="nav-link" to="/results">
+          <NavLink className="nav-link" to="/platform">
+            Analysis
+          </NavLink>
+          <NavLink className="nav-link" to="/vcf-upload">
+            Upload
+          </NavLink>
+          <NavLink className="nav-link" to="/drug-input">
+            Medications
+          </NavLink>
+          <NavLink className="nav-link" to="/results-display">
             Results
           </NavLink>
-          <NavLink className="nav-link" to="/about">
-            About
+          <NavLink className="nav-link" to="/export-share">
+            Export
           </NavLink>
           <NavLink className="nav-link" to="/cpic">
             CPIC
           </NavLink>
         </div>
 
-        <div className="navbar-actions">
-          <div className="navbar-socials">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="navbar-link"
-              title="GitHub Repository"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="navbar-link"
-              title="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-          </div>
-
-          <Link className="btn-book" to="/">
-            Start analysis
-          </Link>
-        </div>
+        <div className="navbar-actions" />
       </div>
     </nav>
   )

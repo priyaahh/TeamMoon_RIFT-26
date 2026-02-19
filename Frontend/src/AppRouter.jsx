@@ -1,6 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AppShell from './AppShell'
+import ScrollToTop from './ScrollToTop'
 import HomePage from './pages/HomePage'
 import PlatformPage from './pages/PlatformPage'
 import ResultsPage from './pages/ResultsPage'

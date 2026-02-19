@@ -60,6 +60,12 @@
   background: rgba(255, 255, 255, 0.45);
 }
 
+.nav-link.active {
+  color: var(--color-primary-600);
+  background: rgba(255, 255, 255, 0.25);
+  border-bottom: 2px solid var(--color-primary-600);
+}
+
 .btn-book {
   background-color: var(--color-text-primary);
   color: var(--color-text-light);

@@ -15,86 +15,63 @@ const ExportSharePage = () => {
       <Navbar />
 
       <div className="feature-page">
-
         <div className="feature-page-header">
           <h1>Export & Share Results</h1>
-          <p>
-            Securely download and share pharmacogenomic analysis outputs
-          </p>
+          <p>Download and securely share your pharmacogenomic analysis</p>
         </div>
 
         <div className="feature-page-content">
           <div className="feature-section">
+            <div className="export-grid">
+              
+              <div className="export-card">
+                <div className="export-icon"><FaFileDownload /></div>
+                <h3>Download as JSON</h3>
+                <p>Get structured analysis data for integration or advanced review</p>
+                <ul>
+                  <li>Complete variant data</li>
+                  <li>Drug-gene interactions</li>
+                  <li>Risk classifications</li>
+                  <li>EHR-compatible format</li>
+                </ul>
+              </div>
 
-            <h2>Export Options</h2>
+              <div className="export-card">
+                <div className="export-icon"><FaCopy /></div>
+                <h3>Copy to Clipboard</h3>
+                <p>Quick access to formatted results for sharing or documentation</p>
+                <ul>
+                  <li>Clinical summaries</li>
+                  <li>Ready to paste</li>
+                  <li>Professional format</li>
+                </ul>
+              </div>
 
-            <div className="info-section">
-              <h3><FaFileDownload /> Download as JSON</h3>
-              <p>
-                Export complete analysis results in structured JSON format
-                for system integration or advanced review.
-              </p>
-              <ul>
-                <li>Variant data with clinical annotations</li>
-                <li>Drug-gene interaction findings</li>
-                <li>Risk classifications and recommendations</li>
-                <li>Analysis metadata and timestamps</li>
-                <li>EHR-compatible structured format</li>
-              </ul>
+              <div className="export-card">
+                <div className="export-icon"><FaShare /></div>
+                <h3>Secure Share</h3>
+                <p>Generate controlled-access links for healthcare providers</p>
+                <ul>
+                  <li>Anonymous links</li>
+                  <li>Expirable access</li>
+                  <li>Password protected</li>
+                </ul>
+              </div>
+
+              <div className="export-card">
+                <div className="export-icon"><FaLock /></div>
+                <h3>Data Security</h3>
+                <p>Your data is encrypted and compliant with healthcare standards</p>
+                <ul>
+                  <li>HIPAA compliant</li>
+                  <li>Encrypted transit & storage</li>
+                  <li>User-controlled retention</li>
+                </ul>
+              </div>
+
             </div>
-
-            <div className="info-section">
-              <h3><FaCopy /> Copy to Clipboard</h3>
-              <p>
-                Quickly copy formatted summaries or specific sections
-                for secure communication.
-              </p>
-              <ul>
-                <li>Formatted clinical summaries</li>
-                <li>Direct paste into documentation or email</li>
-                <li>Clinically relevant highlights included</li>
-                <li>Readable, structured layout</li>
-              </ul>
-            </div>
-
-            <div className="info-section">
-              <h3><FaShare /> Share Results</h3>
-              <p>
-                Generate controlled-access links for healthcare professionals.
-              </p>
-              <ul>
-                <li>Anonymized shareable links</li>
-                <li>Configurable expiration periods</li>
-                <li>Password-protected access option</li>
-                <li>Optional access logging</li>
-              </ul>
-            </div>
-
-            <div className="info-section">
-              <h3><FaLock /> Data Security</h3>
-              <ul>
-                <li><strong>Encryption:</strong> Data encrypted in transit and at rest</li>
-                <li><strong>Privacy Controls:</strong> No identifiers stored without consent</li>
-                <li><strong>Compliance:</strong> HIPAA- and GDPR-aligned practices</li>
-                <li><strong>Retention Policy:</strong> User-controlled deletion (default 30 days)</li>
-                <li><strong>Access Management:</strong> Restricted to authorized users</li>
-              </ul>
-            </div>
-
-            <div className="info-section">
-              <h3>Clinical Use Cases</h3>
-              <ul>
-                <li>Share with prescribing physicians for therapy optimization</li>
-                <li>Provide to pharmacists for medication counseling</li>
-                <li>Archive within patient medical records</li>
-                <li>Integrate into pharmacy management systems</li>
-                <li>Support clinical research initiatives</li>
-              </ul>
-            </div>
-
           </div>
         </div>
-
       </div>
 
       <Footer />
