@@ -88,7 +88,8 @@ def parse_vcf(file_path):
 
 # Test block (optional, only runs if file is executed directly)
 if __name__ == "__main__":
-    vcf_path = "../../sample_vcfs/PGx_Test_600_Variants.vcf"
+    vcf_path = r"C:\Users\shakt\OneDrive\Desktop\RIFT\TeamMoon_RIFT-26\sample_vcfs\PGx_Test_600_Variants.vcf"
+
 
     data = parse_vcf(vcf_path)
 
