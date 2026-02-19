@@ -10,6 +10,8 @@ from parser import parse_vcf
 from analyze import analyze_variants
 from rules import apply_rules
 from risk import calculate_risk_score
+from llm_engine import generate_report
+
 
 
 def main():
@@ -45,6 +47,13 @@ def main():
     print("\n==============================")
     print("FINAL RISK SCORE:", risk_score)
     print("==============================\n")
+
+    print("\n--- STEP 5: Generating AI Report ---")
+    ai_summary = generate_report(risk_score)
+
+    print("\nAI CLINICAL SUMMARY:\n")
+    print(ai_summary)
+
 
 
 if __name__ == "__main__":
