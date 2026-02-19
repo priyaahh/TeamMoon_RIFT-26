@@ -1,46 +1,37 @@
 """
-risk.py
-
-This file converts gene phenotype results
-into drug recommendations using rules.py
+RISK SCORING MODULE
 """
 
 from rules import DRUG_RULES
 
 
-def get_drug_recommendations(gene_results):
+def calculate_risk_score(rule_results):
     """
-    Input:
-        [
-            {"gene": "CYP2D6", "stars": [...], "phenotype": "Poor Metabolizer"}
-        ]
-
-    Output:
-        [
-            {"gene": "CYP2D6", "drug": "Codeine", "recommendation": "Avoid"}
-        ]
+    Convert rule results into numeric risk score
     """
 
-    recommendations = []
+    score = 0
 
-    for result in gene_results:
-        gene = result.get("gene")
-        phenotype = result.get("phenotype")
+    for item in rule_results:
+        risk = item.get("risk_level")
 
-        # Check if gene exists in rules
-        if gene in DRUG_RULES:
+        if risk == "high":
+            score += 3
+        elif risk == "moderate":
+            score += 2
+        else:
+            score += 1
 
-            gene_rules = DRUG_RULES[gene]
+    return {
+        "total_score": score,
+        "category": get_category(score)
+    }
 
-            # Check if phenotype exists for that gene
-            if phenotype in gene_rules:
 
-                for drug_rule in gene_rules[phenotype]:
-                    recommendations.append({
-                        "gene": gene,
-                        "phenotype": phenotype,
-                        "drug": drug_rule["drug"],
-                        "recommendation": drug_rule["recommendation"]
-                    })
-
-    return recommendations
+def get_category(score):
+    if score >= 8:
+        return "HIGH RISK"
+    elif score >= 4:
+        return "MODERATE RISK"
+    else:
+        return "LOW RISK"

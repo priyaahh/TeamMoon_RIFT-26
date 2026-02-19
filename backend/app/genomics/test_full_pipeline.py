@@ -1,40 +1,50 @@
 """
-test_full_pipeline.py
+TEST FULL PIPELINE
+This file runs the entire genomics pipeline:
 
-This file tests the complete pipeline:
-VCF → Parser → Analyzer → Risk → Output
+VCF → parser → analyzer → rules → risk score → output
 """
 
+# Import functions from your other files
 from parser import parse_vcf
-from analyzer import analyze_variants
-from risk import get_drug_recommendations
-
-
-# 🔴 CHANGE THIS PATH IF NEEDED
-# Make sure this path correctly points to your VCF file
-
-vcf_path = "../../sample_vcfs/PGx_Test_600_Variants.vcf"
+from analyze import analyze_variants
+from rules import apply_rules
+from risk import calculate_risk_score
 
 
 def main():
-    print("\nStarting Full Pharmacogenomics Pipeline...\n")
+    # =========================================================
+    # 🔴 CHANGE THIS PATH TO YOUR VCF FILE
+    # =========================================================
+    # Use ONE of the options below
 
-    # Step 1: Parse VCF
+    # OPTION 1 (BEST for Windows)
+    vcf_path = r"C:\Users\shakt\OneDrive\Desktop\RIFT\TeamMoon_RIFT-26\sample_vcfs\PGx_Test_600_Variants.vcf"
+
+    # OPTION 2 (if your VCF is inside project folder)
+    # vcf_path = "../../sample_vcfs/PGx_Test_600_Variants.vcf"
+
+    # OPTION 3 (forward slashes)
+    # vcf_path = "C:/Users/shakt/OneDrive/Desktop/RIFT/TeamMoon_RIFT-26/sample_vcfs/PGx_Test_600_Variants.vcf"
+
+    print("\n--- STEP 1: Parsing VCF ---")
     variants = parse_vcf(vcf_path)
-    print("VCF parsed successfully.")
+    print(f"Parsed {len(variants)} variants")
 
-    # Step 2: Analyze gene phenotypes
-    gene_results = analyze_variants(variants)
-    print("Gene analysis complete.")
+    print("\n--- STEP 2: Analyzing variants ---")
+    analyzed = analyze_variants(variants)
+    print(f"Analyzed {len(analyzed)} variants")
 
-    # Step 3: Generate drug recommendations
-    drug_results = get_drug_recommendations(gene_results)
-    print("Drug recommendations generated.\n")
+    print("\n--- STEP 3: Applying rules ---")
+    rule_results = apply_rules(analyzed)
+    print(f"Rules applied to {len(rule_results)} variants")
 
-    print("FINAL OUTPUT:\n")
+    print("\n--- STEP 4: Calculating risk score ---")
+    risk_score = calculate_risk_score(rule_results)
 
-    for r in drug_results:
-        print(r)
+    print("\n==============================")
+    print("FINAL RISK SCORE:", risk_score)
+    print("==============================\n")
 
 
 if __name__ == "__main__":

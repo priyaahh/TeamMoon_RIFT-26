@@ -1,50 +1,46 @@
 """
-rules.py
-
-This file stores all pharmacogenomic drug rules.
-We separate this so logic is clean and scalable.
+RULE DEFINITIONS
+This file contains rule mappings for pharmacogenomics
 """
 
+# Example rule database
 DRUG_RULES = {
-    "CYP2D6": {
-        "Poor Metabolizer": [
-            {
-                "drug": "Codeine",
-                "recommendation": "Avoid – reduced activation"
-            }
-        ],
-        "Intermediate Metabolizer": [
-            {
-                "drug": "Amitriptyline",
-                "recommendation": "Consider lower dose"
-            }
-        ],
-        "Normal Metabolizer": [
-            {
-                "drug": "Codeine",
-                "recommendation": "Standard dosing"
-            }
-        ]
-    },
-
     "CYP2C19": {
-        "Poor Metabolizer": [
-            {
-                "drug": "Clopidogrel",
-                "recommendation": "Use alternative drug"
-            }
-        ],
-        "Rapid Metabolizer": [
-            {
-                "drug": "Omeprazole",
-                "recommendation": "May need higher dose"
-            }
-        ],
-        "Normal Metabolizer": [
-            {
-                "drug": "Clopidogrel",
-                "recommendation": "Standard dosing"
-            }
-        ]
+        "high": {"drug": "clopidogrel", "risk": "high"},
+        "moderate": {"drug": "clopidogrel", "risk": "moderate"},
+        "low": {"drug": "clopidogrel", "risk": "normal"},
+    },
+    "TPMT": {
+        "high": {"drug": "azathioprine", "risk": "high"},
+        "moderate": {"drug": "azathioprine", "risk": "moderate"},
+        "low": {"drug": "azathioprine", "risk": "normal"},
     }
 }
+
+
+def apply_rules(analyzed_variants):
+    """
+    Apply rule mapping to analyzed variants
+    """
+    results = []
+
+    for variant in analyzed_variants:
+        gene = variant.get("gene")
+        impact = variant.get("impact", "low")
+
+        rule_info = DRUG_RULES.get(gene, {}).get(impact)
+
+        if rule_info:
+            results.append({
+                "gene": gene,
+                "drug": rule_info["drug"],
+                "risk_level": rule_info["risk"]
+            })
+        else:
+            results.append({
+                "gene": gene,
+                "drug": "unknown",
+                "risk_level": "normal"
+            })
+
+    return results
