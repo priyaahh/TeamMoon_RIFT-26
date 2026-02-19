@@ -1,46 +1,36 @@
 """
 RULE DEFINITIONS
-This file contains rule mappings for pharmacogenomics
+Maps phenotype → drug risk
 """
 
-# Example rule database
 DRUG_RULES = {
     "CYP2C19": {
-        "high": {"drug": "clopidogrel", "risk": "high"},
-        "moderate": {"drug": "clopidogrel", "risk": "moderate"},
-        "low": {"drug": "clopidogrel", "risk": "normal"},
+        "Poor Metabolizer": {"drug": "clopidogrel", "risk": "high"},
+        "Intermediate Metabolizer": {"drug": "clopidogrel", "risk": "moderate"},
+        "Normal Metabolizer": {"drug": "clopidogrel", "risk": "low"},
     },
-    "TPMT": {
-        "high": {"drug": "azathioprine", "risk": "high"},
-        "moderate": {"drug": "azathioprine", "risk": "moderate"},
-        "low": {"drug": "azathioprine", "risk": "normal"},
+    "CYP2D6": {
+        "Poor Metabolizer": {"drug": "codeine", "risk": "high"},
+        "Intermediate Metabolizer": {"drug": "codeine", "risk": "moderate"},
+        "Normal Metabolizer": {"drug": "codeine", "risk": "low"},
     }
 }
 
 
 def apply_rules(analyzed_variants):
-    """
-    Apply rule mapping to analyzed variants
-    """
     results = []
 
-    for variant in analyzed_variants:
-        gene = variant.get("gene")
-        impact = variant.get("impact", "low")
+    for item in analyzed_variants:
+        gene = item["gene"]
+        phenotype = item["phenotype"]
 
-        rule_info = DRUG_RULES.get(gene, {}).get(impact)
+        rule = DRUG_RULES.get(gene, {}).get(phenotype)
 
-        if rule_info:
+        if rule:
             results.append({
                 "gene": gene,
-                "drug": rule_info["drug"],
-                "risk_level": rule_info["risk"]
-            })
-        else:
-            results.append({
-                "gene": gene,
-                "drug": "unknown",
-                "risk_level": "normal"
+                "drug": rule["drug"],
+                "risk_level": rule["risk"]
             })
 
     return results
