@@ -1,0 +1,343 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  /* Background is handled in globals.css for body */
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 1200px;
+  background:
+    radial-gradient(circle at top center, rgba(148, 163, 184, 0.18), rgba(248, 250, 252, 0.98));
+  border-radius: 2.5rem;
+  box-shadow:
+    0 40px 80px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(148, 163, 184, 0.35);
+  overflow: hidden;
+  position: relative;
+}
+
+.app-shell .container {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--space-2xl) 0 var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Center content vertically if little content */
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-lg) var(--space-md);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 4.25rem;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin: 0 0 var(--space-lg) 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 18px 45px rgba(15, 23, 42, 0.75);
+}
+
+/* Optional: Gradient Text Effect if desired, but image shows solid black */
+.hero-title span {
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-accent-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(241, 245, 249, 0.95);
+  margin: 0 auto var(--space-2xl) auto;
+  max-width: 720px;
+  text-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+}
+
+.hero-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* Analysis Section */
+.analysis-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  align-items: center;
+  width: 100%;
+}
+
+/* Input Form - Styled as 'Search Pill' */
+.input-form {
+  display: flex;
+  flex-direction: row;
+  /* Horizontal layout */
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.25), transparent 55%),
+    rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: var(--space-lg) var(--space-xl);
+  border-radius: var(--radius-full);
+  /* Pill shape */
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.75),
+    0 0 0 1px rgba(148, 163, 184, 0.4);
+
+  transition: all 0.3s ease;
+}
+
+.input-form:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+.form-title {
+  display: none;
+  /* Hide title inside the pill */
+}
+
+.form-group {
+  flex: 1;
+  position: relative;
+}
+
+/* Add separators between groups */
+.form-group:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  /* Adjust based on gap */
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background-color: var(--color-border-light);
+  display: block;
+}
+
+/* Adjust button to fit inside pill */
+.btn-analyze {
+  flex: 0 0 auto;
+  /* Don't shrink */
+  width: auto;
+  padding: var(--space-md) var(--space-2xl);
+  margin-top: 0;
+  height: 100%;
+  min-height: 50px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+}
+
+/* Results Display */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.results-header {
+  text-align: center;
+}
+
+.results-header>h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.results-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  background: var(--color-bg-glass);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.results-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background-color: var(--color-bg-glass);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.drug-indicator {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-border-light);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.indicator-dot:hover {
+  background-color: var(--color-primary-300);
+}
+
+.indicator-dot.active {
+  background-color: var(--color-primary-600);
+  transform: scale(1.2);
+}
+
+.btn-new-analysis {
+  width: auto;
+  margin: 0 auto;
+  display: block;
+  min-width: 200px;
+}
+
+/* Info Section */
+.info-section {
+  margin-top: var(--space-3xl);
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.info-card {
+  /* Inherits .card styles from theme.css */
+  text-align: center;
+  /* Centered for better alignment focus */
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.96));
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  /* Ensure equal height */
+  justify-content: flex-start;
+  padding: var(--space-xl);
+}
+
+.info-card>h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e5f4ff;
+  margin: 0 0 var(--space-md) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center icon and text */
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.info-card>p {
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.9);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 300px;
+  /* Improve readability for centered text */
+  margin: 0 auto;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding: var(--space-xl) var(--space-md);
+  /* Transparent footer */
+  background: transparent;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.app-footer>p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-shell .container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  /* Stack the input pill on mobile */
+  .input-form {
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    gap: var(--space-lg);
+  }
+
+  .form-group:not(:last-child)::after {
+    display: none;
+  }
+
+  .btn-analyze {
+    width: 100%;
+  }
+
+  .results-navigation {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .results-navigation>button {
+    width: 100%;
+  }
+}

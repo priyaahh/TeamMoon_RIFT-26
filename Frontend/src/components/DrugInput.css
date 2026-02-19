@@ -1,0 +1,102 @@
+.drug-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.input-label {
+  display: none;
+  /* Hide label */
+}
+
+.drug-input-container {
+  width: 100%;
+  position: relative;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--space-sm);
+}
+
+.input-wrapper .input-field {
+  border: none;
+  background: transparent;
+  padding: var(--space-sm) 0;
+  box-shadow: none;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  height: auto;
+}
+
+.input-wrapper .input-field:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-wrapper .input-field::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Add Drug Button / Icon */
+.btn-add-drug {
+  display: none;
+  /* Hide explicit add button, rely on Enter or autosuggest */
+}
+
+/* Drugs List - Selected Drugs */
+.drugs-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: var(--space-md);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  z-index: 20;
+  margin-top: var(--space-md);
+  display: none;
+  /* Hidden by default, only show if drugs exist */
+}
+
+.drugs-list:has(.drug-tag) {
+  display: flex;
+}
+
+.drugs-label {
+  display: none;
+}
+
+.drugs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.drug-tag {
+  background-color: var(--color-primary-50);
+  border: 1px solid var(--color-primary-200);
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  /* If showing inside the input, we need different styling. 
+     For now, let's keep it as a dropdown/popover style or inside the input if space. */
+}
+
+/* New: Suggestion List styled as dropdown */
+.suggestions-list {
+  top: calc(100% + 10px);
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: var(--shadow-xl);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+}
