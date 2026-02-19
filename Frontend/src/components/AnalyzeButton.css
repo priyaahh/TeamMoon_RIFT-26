@@ -1,0 +1,64 @@
+.analyze-btn {
+    width: 100%;
+    padding: var(--space-lg);
+    margin-top: var(--space-md);
+    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-500) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.analyze-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-400) 100%);
+}
+
+.analyze-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.analyze-btn:disabled {
+    background: var(--color-gray-300);
+    color: var(--color-gray-500);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.analyze-btn.loading {
+    cursor: wait;
+}
+
+/* Shine effect */
+.analyze-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 40%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg);
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.analyze-btn:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(50%, 50%);
+}

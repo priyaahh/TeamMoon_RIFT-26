@@ -1,0 +1,168 @@
+.drug-input-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.drug-input-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.input-area {
+  position: relative;
+  margin-bottom: var(--space-sm);
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.drug-search-input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  transition: all 0.2s;
+}
+
+.drug-search-input:focus {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+  outline: none;
+}
+
+.drug-search-input.error {
+  border-color: var(--color-toxic);
+}
+
+.btn-add-inline {
+  position: absolute;
+  right: var(--space-sm);
+  background: var(--color-primary-500);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-add-inline:hover {
+  transform: scale(1.1);
+  background: var(--color-primary-600);
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-xs);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.suggestion-item:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-primary-600);
+}
+
+/* Validation Area */
+.validation-area {
+  min-height: 24px;
+  margin-bottom: var(--space-sm);
+}
+
+.validation-msg {
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.validation-msg.error {
+  color: var(--color-toxic);
+}
+
+.validation-msg.warning {
+  color: var(--color-adjust);
+}
+
+/* Selected Drugs Chips */
+.selected-drugs-area {
+  margin-top: var(--space-md);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.drug-chip {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border: 1px solid var(--color-primary-200);
+}
+
+.chip-remove {
+  background: none;
+  border: none;
+  color: var(--color-primary-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.chip-remove:hover {
+  color: var(--color-toxic);
+}
+
+.empty-drugs-text {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}

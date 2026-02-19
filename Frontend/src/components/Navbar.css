@@ -1,0 +1,116 @@
+/* Navbar Styles */
+.navbar {
+  background: transparent;
+  padding: var(--space-lg) 0 var(--space-md);
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  font-family: var(--font-family-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.navbar-logo span {
+  color: var(--color-primary-600);
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+}
+
+.navbar-subtitle {
+  display: none;
+  /* Hide subtitle for cleaner look */
+}
+
+.navbar-links {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  transition: color 0.2s ease;
+  padding: 0.35rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.nav-link:hover {
+  color: var(--color-primary-600);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.btn-book {
+  background-color: var(--color-text-primary);
+  color: var(--color-text-light);
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-gray-800);
+}
+
+/* Mobile Menu - Simplified */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    /* Hide links on mobile for now or implement burger */
+  }
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar-socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.navbar-link {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+.navbar-link:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(56, 189, 248, 0.35);
+}

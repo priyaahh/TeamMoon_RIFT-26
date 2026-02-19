@@ -1,0 +1,293 @@
+.home-page {
+  width: 100%;
+}
+
+/* GLOBAL SECTION SPACING */
+.home-page section {
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.home-page section:not(:last-child) {
+  margin-bottom: var(--space-2xl);
+}
+
+/* HERO SECTION */
+.hero-section {
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: var(--space-lg);
+  line-height: 1.3;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.hero-title .hero-subtitle-text {
+  display: block;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #4338ca 35%, #6d28d9 70%, #4c1d95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: var(--space-md);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(241, 245, 249, 0.9);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+  text-shadow: 0 2px 6px rgba(15, 23, 42, 0.3);
+}
+
+.hero-get-started-btn {
+  background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 50%, #8b5cf6 100%);
+  color: #ffffff;
+  padding: 16px 48px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(14, 165, 233, 0.4);
+}
+
+.hero-get-started-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(14, 165, 233, 0.5);
+}
+
+/* PROBLEM SECTION */
+.problem-section {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+}
+
+.problem-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.problem-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.problem-content p {
+  font-size: 1.1rem;
+  color: rgba(241, 245, 249, 0.85);
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+
+.problem-content p.highlight {
+  color: var(--color-primary-200);
+  font-weight: 600;
+}
+
+/* PLATFORM SNAPSHOT */
+.platform-snapshot h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.snapshot-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.snapshot-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.snapshot-card .card-icon {
+  font-size: 2.8rem;
+  color: var(--color-primary-300);
+  margin-bottom: var(--space-md);
+}
+
+.snapshot-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.snapshot-card p {
+  color: rgba(241, 245, 249, 0.7);
+  font-size: 0.95rem;
+}
+
+/* HOW IT WORKS */
+.how-it-works h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step {
+  text-align: center;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary-500);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: var(--space-md);
+}
+
+.step .step-icon {
+  font-size: 2.3rem;
+  color: var(--color-primary-300);
+  margin-bottom: var(--space-md);
+}
+
+.step h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.step p {
+  color: rgba(241, 245, 249, 0.7);
+  font-size: 0.95rem;
+}
+
+/* WEB INTERFACE FEATURES */
+.web-interface-features h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 25%, #8b5cf6 75%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card:hover {
+  background: rgba(14, 165, 233, 0.1);
+  transform: translateY(-4px);
+}
+
+.feature-card .feature-icon {
+  font-size: 2.3rem;
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, #00d4ff, #0ea5e9, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-md);
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-card li {
+  color: rgba(241, 245, 249, 0.75);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.feature-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .snapshot-grid,
+  .steps-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

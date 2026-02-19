@@ -1,0 +1,127 @@
+.upload-card {
+  border: 2px dashed var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  background: var(--color-bg-gray-50);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.upload-card:hover:not(.disabled) {
+  border-color: var(--color-primary-400);
+  background: var(--color-primary-50);
+}
+
+.upload-card.dragging {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-100);
+  transform: scale(1.02);
+}
+
+.upload-card.success {
+  border: 2px solid var(--color-safe);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.upload-card.error {
+  border-color: var(--color-toxic);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.upload-card.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-content {
+  width: 100%;
+}
+
+.upload-icon-wrapper {
+  font-size: 3rem;
+  color: var(--color-primary-400);
+  margin-bottom: var(--space-sm);
+}
+
+.primary-text {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.secondary-text {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-md);
+}
+
+.file-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-sm);
+}
+
+/* File Preview */
+.file-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  width: 100%;
+}
+
+.file-icon-wrapper {
+  font-size: 2rem;
+  color: var(--color-primary-500);
+}
+
+.file-details {
+  flex: 1;
+  text-align: left;
+}
+
+.file-name {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  word-break: break-all;
+}
+
+.file-size {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.validation-status {
+  color: var(--color-safe);
+  font-size: 1.2rem;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  padding: var(--space-xs);
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1rem;
+}
+
+.btn-remove:hover {
+  color: var(--color-toxic);
+}
+
+.validation-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  color: var(--color-toxic);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-sm);
+}

@@ -1,0 +1,131 @@
+.json-viewer {
+  background-color: var(--color-bg-primary);
+}
+
+.json-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-lg);
+}
+
+.json-viewer-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.json-icon {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-600);
+}
+
+.json-viewer-title > h3 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.json-viewer-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.btn-expand,
+.btn-copy {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.btn-expand:hover,
+.btn-copy:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-600);
+}
+
+.btn-expand.expanded {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-600);
+}
+
+.json-viewer-content {
+  padding: var(--space-lg);
+  background-color: var(--color-gray-900);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.json-code {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  color: #a8dadc;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.json-code > code {
+  color: #a8dadc;
+}
+
+.json-preview {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Syntax Highlighting */
+.json-string {
+  color: #90ee90;
+}
+
+.json-number {
+  color: #ffa500;
+}
+
+.json-boolean {
+  color: #ff69b4;
+}
+
+.json-null {
+  color: #87ceeb;
+}
+
+.json-key {
+  color: #87ceeb;
+}
+
+@media (max-width: 768px) {
+  .json-viewer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .json-viewer-controls {
+    width: 100%;
+  }
+
+  .json-viewer-content {
+    max-height: 400px;
+  }
+}
