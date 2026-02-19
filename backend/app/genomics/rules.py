@@ -1,36 +1,41 @@
-"""
-RULE DEFINITIONS
-Maps phenotype → drug risk
-"""
+def apply_rules(analyzed_data):
+    """
+    Takes analyzed gene data and returns drug rules
+    REQUIRED RETURN FORMAT:
+    [
+      {
+        "drug": "...",
+        "recommendation": "...",
+        "risk_level": "high/moderate/low"
+      }
+    ]
+    """
 
-DRUG_RULES = {
-    "CYP2C19": {
-        "Poor Metabolizer": {"drug": "clopidogrel", "risk": "high"},
-        "Intermediate Metabolizer": {"drug": "clopidogrel", "risk": "moderate"},
-        "Normal Metabolizer": {"drug": "clopidogrel", "risk": "low"},
-    },
-    "CYP2D6": {
-        "Poor Metabolizer": {"drug": "codeine", "risk": "high"},
-        "Intermediate Metabolizer": {"drug": "codeine", "risk": "moderate"},
-        "Normal Metabolizer": {"drug": "codeine", "risk": "low"},
-    }
-}
-
-
-def apply_rules(analyzed_variants):
     results = []
 
-    for item in analyzed_variants:
-        gene = item["gene"]
-        phenotype = item["phenotype"]
+    for item in analyzed_data:
+        phenotype = item.get("phenotype")
 
-        rule = DRUG_RULES.get(gene, {}).get(phenotype)
-
-        if rule:
+        # CYP2D6 + codeine rules (example)
+        if phenotype == "PM":
             results.append({
-                "gene": gene,
-                "drug": rule["drug"],
-                "risk_level": rule["risk"]
+                "drug": "codeine",
+                "recommendation": "Avoid use — poor metabolizer",
+                "risk_level": "high"
+            })
+
+        elif phenotype == "IM":
+            results.append({
+                "drug": "codeine",
+                "recommendation": "Reduce dose",
+                "risk_level": "moderate"
+            })
+
+        else:
+            results.append({
+                "drug": "codeine",
+                "recommendation": "Standard dosing ok",
+                "risk_level": "low"
             })
 
     return results

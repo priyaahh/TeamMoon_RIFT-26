@@ -1,37 +1,32 @@
-"""
-RISK SCORING MODULE
-"""
-
-from rules import DRUG_RULES
-
-
 def calculate_risk_score(rule_results):
-    """
-    Convert rule results into numeric risk score
-    """
 
     score = 0
 
-    for item in rule_results:
-        risk = item.get("risk_level")
+    for r in rule_results:
+        level = r.get("risk_level")
 
-        if risk == "high":
+        if level == "high":
             score += 3
-        elif risk == "moderate":
+        elif level == "moderate":
             score += 2
         else:
             score += 1
 
-    return {
-        "total_score": score,
-        "category": get_category(score)
-    }
-
-
-def get_category(score):
-    if score >= 8:
-        return "HIGH RISK"
-    elif score >= 4:
-        return "MODERATE RISK"
+    if score >= 3:
+        category = "HIGH RISK"
+        severity = "high"
+        confidence = 0.9
+    elif score == 2:
+        category = "MODERATE RISK"
+        severity = "moderate"
+        confidence = 0.7
     else:
-        return "LOW RISK"
+        category = "LOW RISK"
+        severity = "low"
+        confidence = 0.5
+
+    return {
+        "category": category,
+        "confidence": confidence,
+        "severity": severity
+    }
