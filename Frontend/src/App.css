@@ -10,12 +10,7 @@
 .app-shell {
   width: 100%;
   max-width: 1200px;
-  background:
-    radial-gradient(circle at top center, rgba(148, 163, 184, 0.18), rgba(248, 250, 252, 0.98));
-  border-radius: 2.5rem;
-  box-shadow:
-    0 40px 80px rgba(15, 23, 42, 0.85),
-    0 0 0 1px rgba(148, 163, 184, 0.35);
+  background: transparent;
   overflow: hidden;
   position: relative;
 }
@@ -27,11 +22,10 @@
 
 .app-main {
   flex: 1;
-  padding: var(--space-2xl) 0 var(--space-xl);
+  padding: var(--space-lg) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Center content vertically if little content */
 }
 
 /* Hero Section */
@@ -292,17 +286,18 @@
 /* Footer */
 .app-footer {
   margin-top: auto;
-  padding: var(--space-xl) var(--space-md);
-  /* Transparent footer */
-  background: transparent;
+  padding: var(--space-2xl) var(--space-md);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
   color: var(--color-text-tertiary);
   text-align: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.app-footer>p {
+.app-footer p {
   margin: 0;
   font-size: var(--font-size-sm);
+  font-weight: 500;
 }
 
 /* Responsive */

@@ -1,102 +1,168 @@
-.drug-input {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
+.drug-input-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
 }
 
-.input-label {
-  display: none;
-  /* Hide label */
+.drug-input-card:hover {
+  box-shadow: var(--shadow-md);
 }
 
-.drug-input-container {
-  width: 100%;
+.card-header h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.input-area {
   position: relative;
+  margin-bottom: var(--space-sm);
 }
 
-.input-wrapper {
+.search-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+}
+
+.drug-search-input {
   width: 100%;
-  height: 100%;
-  padding: 0 var(--space-sm);
-}
-
-.input-wrapper .input-field {
-  border: none;
-  background: transparent;
-  padding: var(--space-sm) 0;
-  box-shadow: none;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
   font-size: var(--font-size-base);
-  font-weight: 500;
-  color: var(--color-text-primary);
-  height: auto;
+  transition: all 0.2s;
 }
 
-.input-wrapper .input-field:focus {
+.drug-search-input:focus {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
   outline: none;
-  box-shadow: none;
 }
 
-.input-wrapper .input-field::placeholder {
-  color: var(--color-text-tertiary);
+.drug-search-input.error {
+  border-color: var(--color-toxic);
 }
 
-/* Add Drug Button / Icon */
-.btn-add-drug {
-  display: none;
-  /* Hide explicit add button, rely on Enter or autosuggest */
+.btn-add-inline {
+  position: absolute;
+  right: var(--space-sm);
+  background: var(--color-primary-500);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* Drugs List - Selected Drugs */
-.drugs-list {
+.btn-add-inline:hover {
+  transform: scale(1.1);
+  background: var(--color-primary-600);
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   background: white;
-  padding: var(--space-md);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-xs);
   box-shadow: var(--shadow-lg);
-  border-radius: var(--radius-lg);
-  z-index: 20;
-  margin-top: var(--space-md);
-  display: none;
-  /* Hidden by default, only show if drugs exist */
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-.drugs-list:has(.drug-tag) {
+.suggestion-item {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.suggestion-item:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-primary-600);
+}
+
+/* Validation Area */
+.validation-area {
+  min-height: 24px;
+  margin-bottom: var(--space-sm);
+}
+
+.validation-msg {
+  font-size: var(--font-size-sm);
   display: flex;
-}
-
-.drugs-label {
-  display: none;
-}
-
-.drugs-tags {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-xs);
 }
 
-.drug-tag {
-  background-color: var(--color-primary-50);
-  border: 1px solid var(--color-primary-200);
-  padding: 2px 8px;
-  font-size: var(--font-size-xs);
-  /* If showing inside the input, we need different styling. 
-     For now, let's keep it as a dropdown/popover style or inside the input if space. */
+.validation-msg.error {
+  color: var(--color-toxic);
 }
 
-/* New: Suggestion List styled as dropdown */
-.suggestions-list {
-  top: calc(100% + 10px);
-  width: 100%;
-  border-radius: var(--radius-lg);
+.validation-msg.warning {
+  color: var(--color-adjust);
+}
+
+/* Selected Drugs Chips */
+.selected-drugs-area {
+  margin-top: var(--space-md);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.drug-chip {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border: 1px solid var(--color-primary-200);
+}
+
+.chip-remove {
+  background: none;
   border: none;
-  box-shadow: var(--shadow-xl);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
+  color: var(--color-primary-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.chip-remove:hover {
+  color: var(--color-toxic);
+}
+
+.empty-drugs-text {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
 }

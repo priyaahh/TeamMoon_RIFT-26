@@ -15,20 +15,25 @@ body {
   font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Main home background using homebg.png from Frontend folder */
+  /* Background matching inspo.jpg - dark overlay with background image */
   background-color: #f0fdfa;
   background-image:
     linear-gradient(
       135deg,
-      rgba(15, 23, 42, 0.65),
-      rgba(15, 23, 42, 0.2)
+      rgba(15, 23, 42, 0.75),
+      rgba(15, 23, 42, 0.25)
     ),
     url('../../homebg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: var(--color-text-primary);
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  image-rendering: -webkit-optimize-contrast;
+  color: #ffffff;
   min-height: 100vh;
 }
 

@@ -1,167 +1,192 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { VCFUpload } from '../components/upload/VCFUpload'
-import { DrugInput } from '../components/drug/DrugInput'
-import { Loader } from '../components/common/Loader'
-import { ErrorAlert } from '../components/common/ErrorAlert'
-import { analyzePharmacogenomics, getSupportedDrugs } from '../utils/api'
-import { saveResults } from '../utils/resultsStore'
+import {
+  FaDna,
+  FaFlask,
+  FaChartBar,
+  FaBrain,
+  FaUpload,
+  FaPills,
+  FaCheckCircle,
+  FaFileDownload
+} from 'react-icons/fa'
+import './HomePage.css'
 
-export const HomePage = () => {
+const HomePage = () => {
   const navigate = useNavigate()
-  const [vcfFile, setVcfFile] = useState(null)
-  const [drugs, setDrugs] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [supportedDrugs, setSupportedDrugs] = useState([
-    'CODEINE',
-    'WARFARIN',
-    'CLOPIDOGREL',
-    'SIMVASTATIN',
-    'AZATHIOPRINE',
-    'FLUOROURACIL',
-  ])
 
-  useEffect(() => {
-    const fetchDrugs = async () => {
-      try {
-        const drugList = await getSupportedDrugs()
-        if (Array.isArray(drugList) && drugList.length > 0) {
-          setSupportedDrugs(drugList)
-        }
-      } catch {
-        // keep defaults
-      }
-    }
-    fetchDrugs()
-  }, [])
-
-  const canAnalyze = useMemo(() => Boolean(vcfFile) && drugs.length > 0, [vcfFile, drugs])
-
-  const handleAnalyze = async () => {
-    if (!vcfFile) {
-      setError({
-        title: 'VCF File Required',
-        message: 'Please upload a VCF file to proceed.',
-        type: 'error',
-      })
-      return
-    }
-
-    if (drugs.length === 0) {
-      setError({
-        title: 'Drug Selection Required',
-        message: 'Please select at least one drug for analysis.',
-        type: 'error',
-      })
-      return
-    }
-
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      const allResults = []
-      for (const drug of drugs) {
-        const result = await analyzePharmacogenomics(vcfFile, drug)
-        allResults.push(result)
-      }
-
-      const payload = {
-        multiple: allResults.length > 1,
-        current: 0,
-        results: allResults,
-      }
-
-      saveResults(payload)
-      navigate('/results', { state: payload })
-    } catch (err) {
-      setError({
-        title: 'Analysis Failed',
-        message: err.message || 'Failed to analyze pharmacogenomics.',
-        type: 'error',
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const goTo = (path) => () => navigate(path)
 
   return (
-    <>
+    <div className="home-page">
+
+      {/* HERO SECTION WITH PRIMARY CTA */}
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
-            PharmaGuard
-            <br />
-            Pharmacogenomic <span>Risk Prediction</span>
+            PHARMA GUARD
+            <span className="hero-subtitle-text">
+              Revolutionizing Drug Safety Through Genetic Intelligence
+            </span>
           </h1>
+
           <p className="hero-subtitle">
-            Upload a VCF file, enter drug name(s), and get personalized risk predictions with
-            explainable clinical recommendations aligned to CPIC.
+            AI-powered pharmacogenomic risk prediction platform that analyzes
+            genomic data to deliver personalized medication safety insights.
           </p>
-        </div>
-      </section>
-
-      <section className="analysis-section">
-        <div className="input-form">
-          <div className="form-group">
-            <VCFUpload onFileSelect={setVcfFile} disabled={isLoading} />
-          </div>
-
-          <div className="form-group">
-            <DrugInput
-              onDrugSelect={setDrugs}
-              disabled={isLoading}
-              supportedDrugs={supportedDrugs}
-            />
-          </div>
 
           <button
-            className="btn btn-primary btn-analyze"
-            onClick={handleAnalyze}
-            disabled={isLoading || !canAnalyze}
-            type="button"
+            className="hero-get-started-btn"
+            onClick={goTo('/platform')}
           >
-            {isLoading ? 'Processing...' : 'Analyze Risk'}
+            Ready to Get Started?
           </button>
         </div>
-
-        {isLoading && (
-          <Loader
-            message="Analyzing genetic data and predicting drug risks..."
-            fullScreen
-          />
-        )}
-
-        {error && (
-          <ErrorAlert
-            title={error.title}
-            message={error.message}
-            type={error.type}
-            onClose={() => setError(null)}
-          />
-        )}
       </section>
 
-      <section className="info-section">
-        <div className="info-grid">
-          <div className="info-card">
-            <h3>🧬 Genetic Variants</h3>
-            <p>Detect pharmacogenomic variants from real VCF (v4.2) patient data.</p>
-          </div>
-          <div className="info-card">
-            <h3>🎯 Drug-Specific Risk</h3>
-            <p>See Safe / Adjust Dosage / Toxic / Ineffective / Unknown with confidence.</p>
-          </div>
-          <div className="info-card">
-            <h3>🧠 Explainable AI</h3>
-            <p>Get concise explanations with variant citations and biological mechanisms.</p>
+      {/* PROBLEM OVERVIEW */}
+      <section className="problem-section">
+        <div className="container">
+          <h2>Why Pharmacogenomics Matters</h2>
+          <div className="problem-content">
+            <p>
+              Adverse drug reactions remain a leading preventable cause of mortality.
+            </p>
+            <p>
+              Genetic variation in drug-metabolizing enzymes directly impacts
+              treatment safety and effectiveness.
+            </p>
+            <p className="highlight">
+              Our platform combines genomics and AI to support safer prescribing.
+            </p>
           </div>
         </div>
       </section>
-    </>
+
+      {/* PLATFORM SNAPSHOT */}
+      <section className="platform-snapshot">
+        <div className="container">
+          <h2>Platform Capabilities</h2>
+          <div className="snapshot-grid">
+
+            <div className="snapshot-card" onClick={goTo('/platform')}>
+              <FaDna className="card-icon" />
+              <h3>Genomic Variant Analysis</h3>
+              <p>Advanced VCF parsing and classification</p>
+            </div>
+
+            <div className="snapshot-card" onClick={goTo('/platform')}>
+              <FaPills className="card-icon" />
+              <h3>Drug-Gene Interaction Mapping</h3>
+              <p>Pharmacogenomic association alignment</p>
+            </div>
+
+            <div className="snapshot-card" onClick={goTo('/platform')}>
+              <FaChartBar className="card-icon" />
+              <h3>Risk Classification Engine</h3>
+              <p>Intelligent risk level assessment</p>
+            </div>
+
+            <div className="snapshot-card" onClick={goTo('/platform')}>
+              <FaBrain className="card-icon" />
+              <h3>AI Clinical Insights</h3>
+              <p>Explainable and interpretable outputs</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="how-it-works">
+        <div className="container">
+          <h2>How It Works</h2>
+          <div className="steps-grid">
+
+            <div className="step">
+              <div className="step-number">1</div>
+              <FaUpload className="step-icon" />
+              <h3>Upload Genomic Data</h3>
+              <p>Securely upload your VCF file</p>
+            </div>
+
+            <div className="step">
+              <div className="step-number">2</div>
+              <FaPills className="step-icon" />
+              <h3>Select Medication</h3>
+              <p>Choose one or multiple drugs</p>
+            </div>
+
+            <div className="step">
+              <div className="step-number">3</div>
+              <FaFlask className="step-icon" />
+              <h3>AI Variant Interpretation</h3>
+              <p>Analyze genetic-drug interactions</p>
+            </div>
+
+            <div className="step">
+              <div className="step-number">4</div>
+              <FaCheckCircle className="step-icon" />
+              <h3>Receive Risk Report</h3>
+              <p>Personalized pharmacogenomic insights</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* WEB INTERFACE FEATURES */}
+      <section className="web-interface-features">
+        <div className="container">
+          <h2>Features</h2>
+          <div className="features-grid">
+
+            <div className="feature-card" onClick={goTo('/vcf-upload')}>
+              <div className="feature-icon"><FaUpload /></div>
+              <h3>File Upload Interface</h3>
+              <ul>
+                <li>Drag-and-drop or file picker</li>
+                <li>VCF validation before processing</li>
+                <li>File size limit indicator</li>
+              </ul>
+            </div>
+
+            <div className="feature-card" onClick={goTo('/drug-input')}>
+              <div className="feature-icon"><FaPills /></div>
+              <h3>Drug Input Field</h3>
+              <ul>
+                <li>Text input or dropdown</li>
+                <li>Multiple drug support</li>
+                <li>Input validation</li>
+              </ul>
+            </div>
+
+            <div className="feature-card" onClick={goTo('/results-display')}>
+              <div className="feature-icon"><FaChartBar /></div>
+              <h3>Results Display</h3>
+              <ul>
+                <li>Clear risk visualization</li>
+                <li>Color-coded labels</li>
+                <li>Expandable sections</li>
+              </ul>
+            </div>
+
+            <div className="feature-card" onClick={goTo('/export-share')}>
+              <div className="feature-icon"><FaFileDownload /></div>
+              <h3>Export & Share</h3>
+              <ul>
+                <li>Download JSON output</li>
+                <li>Copy-to-clipboard</li>
+                <li>Secure data handling</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
   )
 }
 
 export default HomePage
-

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaTimes, FaPlus } from 'react-icons/fa'
+import { FaTimes, FaPlus, FaExclamationTriangle } from 'react-icons/fa'
 import { validateDrugInput } from '../utils/validateVCF'
 import './DrugInput.css'
 
@@ -86,13 +86,27 @@ export const DrugInput = ({
   }
 
   const handleSuggestionClick = (drug) => {
-    setInputValue(drug)
-    setShowSuggestions(false)
+    // Only set input value, let user add it explicitly or auto-add? 
+    // UX: Click suggestion -> Auto add is usually better.
+    // Let's adapt local function to add directly.
+    const trimmedValue = drug.toUpperCase()
+    if (!drugs.includes(trimmedValue)) {
+      const newDrugs = [...drugs, trimmedValue]
+      setDrugs(newDrugs)
+      onDrugSelect(newDrugs)
+      setInputValue('')
+      setShowSuggestions(false)
+      setErrors([])
+    } else {
+      setInputValue('')
+      setShowSuggestions(false)
+    }
   }
 
   const getFilteredSuggestions = () => {
     const input = inputValue.trim().toUpperCase()
-    if (!input) return supportedDrugs
+    // Don't show all initially, only on type
+    if (!input) return []
 
     return supportedDrugs.filter(
       (drug) => drug.includes(input) && !drugs.includes(drug)
@@ -102,104 +116,75 @@ export const DrugInput = ({
   const filteredSuggestions = getFilteredSuggestions()
 
   return (
-    <div className="drug-input">
-      <label className="input-label">Enter Drug Name(s)</label>
+    <div className="drug-input-card">
+      <div className="card-header">
+        <h3>Enter Drug(s)</h3>
+      </div>
 
-      <div className="drug-input-container">
-        <div className="input-wrapper">
+      <div className="input-area">
+        <div className="search-wrapper">
           <input
             type="text"
-            className="input-field"
-            placeholder="Type drug name and press Enter or click +"
+            className={`drug-search-input ${errors.length > 0 ? 'error' : ''}`}
+            placeholder="Search or type drug name..."
             value={inputValue}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             onFocus={() => inputValue && setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             disabled={disabled}
-            aria-label="Drug name input"
             autoComplete="off"
           />
+          {inputValue && (
+            <button className="btn-add-inline" onClick={handleAddDrug} disabled={disabled}>
+              <FaPlus />
+            </button>
+          )}
 
-          <button
-            className="btn btn-primary btn-add-drug"
-            onClick={handleAddDrug}
-            disabled={disabled}
-            type="button"
-            title="Add drug"
-          >
-            <FaPlus /> Add
-          </button>
+          {showSuggestions && filteredSuggestions.length > 0 && (
+            <div className="suggestions-dropdown">
+              {filteredSuggestions.map((drug, index) => (
+                <button
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => handleSuggestionClick(drug)}
+                  type="button"
+                >
+                  {drug}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+      </div>
 
-        {showSuggestions && filteredSuggestions.length > 0 && (
-          <div className="suggestions-list">
-            {filteredSuggestions.slice(0, 6).map((drug, index) => (
-              <button
-                key={index}
-                className="suggestion-item"
-                onClick={() => handleSuggestionClick(drug)}
-                type="button"
-              >
-                {drug}
-              </button>
-            ))}
-          </div>
+      <div className="validation-area">
+        {errors.length > 0 && (
+          <p className="validation-msg error">❌ {errors[0]}</p>
+        )}
+        {warnings.length > 0 && (
+          <p className="validation-msg warning"><FaExclamationTriangle /> {warnings[0]}</p>
         )}
       </div>
 
-      {drugs.length > 0 && (
-        <div className="drugs-list">
-          <label className="drugs-label">
-            Selected Drugs ({drugs.length})
-          </label>
-          <div className="drugs-tags">
+      <div className="selected-drugs-area">
+        {drugs.length === 0 ? (
+          <p className="empty-drugs-text">No drugs selected</p>
+        ) : (
+          <div className="chips-container">
             {drugs.map((drug, index) => (
-              <div key={index} className="drug-tag">
+              <div key={index} className="drug-chip">
                 <span>{drug}</span>
                 <button
-                  className="btn-remove-drug"
+                  className="chip-remove"
                   onClick={() => handleRemoveDrug(index)}
-                  type="button"
-                  title="Remove drug"
                 >
                   <FaTimes />
                 </button>
               </div>
             ))}
           </div>
-        </div>
-      )}
-
-      {errors.length > 0 && (
-        <div className="validation-messages error">
-          {errors.map((error, index) => (
-            <p key={index} className="message-text">
-              ❌ {error}
-            </p>
-          ))}
-        </div>
-      )}
-
-      {warnings.length > 0 && (
-        <div className="validation-messages warning">
-          {warnings.map((warning, index) => (
-            <p key={index} className="message-text">
-              ⚠️ {warning}
-            </p>
-          ))}
-        </div>
-      )}
-
-      <div className="info-box">
-        <p className="info-label">💡 Supported Drugs:</p>
-        <div className="supported-drugs">
-          {supportedDrugs.map((drug, index) => (
-            <span key={index} className="drug-badge">
-              {drug}
-            </span>
-          ))}
-        </div>
+        )}
       </div>
     </div>
   )

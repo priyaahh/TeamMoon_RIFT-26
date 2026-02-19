@@ -50,9 +50,9 @@
   --color-bg-glass-strong: rgba(255, 255, 255, 0.9);
 
   /* Text */
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #334155;
-  --color-text-tertiary: #64748b;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e0e7ff;
+  --color-text-tertiary: #c7d2fe;
   --color-text-light: #ffffff;
 
   /* Borders */

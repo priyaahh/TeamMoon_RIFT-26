@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { FaCloudUploadAlt, FaFile, FaTimes } from 'react-icons/fa'
+import { FaCloudUploadAlt, FaFile, FaTimes, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 import { validateVCFFile } from '../utils/validateVCF'
 import './FileUpload.css'
 
@@ -26,6 +26,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
   const handleDrop = (e) => {
     e.preventDefault()
     setIsDragging(false)
+    if (disabled) return
 
     const droppedFile = e.dataTransfer.files[0]
     if (droppedFile) {
@@ -35,6 +36,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
 
   const handleDragOver = (e) => {
     e.preventDefault()
+    if (disabled) return
     setIsDragging(true)
   }
 
@@ -49,7 +51,8 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
     }
   }
 
-  const clearFile = () => {
+  const clearFile = (e) => {
+    e.stopPropagation()
     setFile(null)
     setErrors([])
     onFileSelect(null)
@@ -59,52 +62,60 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
   }
 
   const triggerFileInput = () => {
-    fileInputRef.current?.click()
+    if (!disabled) {
+      fileInputRef.current?.click()
+    }
   }
 
-  return (
-    <div className="file-upload">
-      <label className="upload-label">Upload VCF File</label>
+  // Determine container class based on state
+  let containerClass = "upload-card"
+  if (isDragging) containerClass += " dragging"
+  if (disabled) containerClass += " disabled"
+  if (errors.length > 0) containerClass += " error"
+  if (file) containerClass += " success"
 
-      {!file ? (
-        <div
-          className={`upload-zone ${isDragging ? 'dragging' : ''} ${
-            disabled ? 'disabled' : ''
-          }`}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onClick={triggerFileInput}
-        >
-          <FaCloudUploadAlt className="upload-icon" />
-          <p className="upload-title">Drag & Drop Your VCF File</p>
-          <p className="upload-subtitle">or click to browse</p>
-          <p className="upload-hint">Maximum file size: 5 MB</p>
-        </div>
-      ) : (
-        <div className="file-info">
-          <div className="file-header">
-            <FaFile className="file-icon" />
+  return (
+    <div className={containerClass} onClick={triggerFileInput}>
+      <div className="upload-content">
+        {!file ? (
+          <>
+            <div className="upload-icon-wrapper">
+              <FaCloudUploadAlt className="upload-icon" />
+            </div>
+            <div className="upload-text">
+              <p className="primary-text">Drag & Drop VCF File</p>
+              <p className="secondary-text">or click to browse</p>
+            </div>
+            {errors.length > 0 && (
+              <div className="validation-message error">
+                <FaExclamationCircle />
+                <span>{errors[0]}</span>
+              </div>
+            )}
+            <p className="file-hint">Max file size: 10 MB</p>
+          </>
+        ) : (
+          <div className="file-preview">
+            <div className="file-icon-wrapper">
+              <FaFile className="file-icon" />
+            </div>
             <div className="file-details">
               <p className="file-name">{file.name}</p>
-              <p className="file-size">
-                {(file.size / 1024).toFixed(2)} KB
-              </p>
+              <p className="file-size">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+            </div>
+            <div className="validation-status">
+              <FaCheckCircle className="check-icon" />
             </div>
             <button
-              className="btn-clear"
+              className="btn-remove"
               onClick={clearFile}
-              title="Clear file"
-              type="button"
+              title="Remove file"
             >
               <FaTimes />
             </button>
           </div>
-          <div className="file-status">
-            <span className="status-badge success">✓ Valid VCF File</span>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <input
         ref={fileInputRef}
@@ -113,18 +124,7 @@ export const FileUpload = ({ onFileSelect, disabled = false }) => {
         onChange={handleInputChange}
         style={{ display: 'none' }}
         disabled={disabled}
-        aria-label="Upload VCF file"
       />
-
-      {errors.length > 0 && (
-        <div className="error-messages">
-          {errors.map((error, index) => (
-            <p key={index} className="error-text">
-              ❌ {error}
-            </p>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
