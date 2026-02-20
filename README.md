@@ -90,7 +90,9 @@ TeamMoon_RIFT-26/
 │   │   │   │   ├── Footer.jsx
 │   │   │   │   └── Footer.css
 │   │   │   ├── results/
+│   │   │   │   └── ... (other result components)
 │   │   │   ├── upload/
+│   │   │   │   └── ... (VCF upload components)
 │   │   │   └── ... (other UI components)
 │   │   ├── pages/
 │   │   │   ├── HomePage.jsx
@@ -102,6 +104,7 @@ TeamMoon_RIFT-26/
 │   │   ├── utils/
 │   │   │   └── validateVCF.js
 │   │   ├── styles/
+│   │   │   └── ... (CSS files)
 │   │   ├── App.jsx
 │   │   ├── AppRouter.jsx
 │   │   ├── AppShell.jsx
@@ -113,6 +116,14 @@ TeamMoon_RIFT-26/
 │   └── README.md
 ├── backend/
 │   ├── app/
+│   │   ├── main.py
+│   │   ├── analyze.py
+│   │   ├── rules.py
+│   │   ├── risk.py
+│   │   ├── utils.py
+│   │   ├── test_full_pipeline.py
+│   │   └── LLM/
+│   │       └── llm_engine.py
 │   └── requirements.txt
 ├── sample_vcfs/
 │   ├── PGx_Test_600_Variants.vcf
@@ -121,7 +132,6 @@ TeamMoon_RIFT-26/
 ├── .env
 ├── .gitignore
 └── requirements.txt
-
 
 ---
 
@@ -210,3 +220,4 @@ Patient-friendly reports & batch processing
 PharmaGuard demonstrates how AI can enhance precision medicine by combining pharmacogenomic rules with natural language clinical reasoning.
 
 RIFT 2026 Hackathon – Pharmacogenomics / Explainable AI Track
+
