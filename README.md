@@ -19,6 +19,7 @@ PharmaGuard addresses this critical problem by building an AI-powered web applic
 
 🏗 Architecture Overview
 
+PharmaGuard follows a modular, API-first architecture that separates deterministic pharmacogenomic computation from AI-driven clinical interpretation. This ensures reliability in risk prediction while leveraging LLMs for explainability.
 PharmaGuard uses a hybrid architecture combining deterministic genomic analysis with LLM-based explanation generation.
 
 🔄 System Flow
@@ -271,5 +272,6 @@ Set environment variables in hosting dashboard.
 * Batch processing of genomic datasets
 
 PharmaGuard demonstrates how AI can enhance precision medicine by combining pharmacogenomic rules with natural language clinical reasoning.
+
 
 
