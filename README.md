@@ -1,49 +1,55 @@
-# PharmaGuard: Pharmacogenomic Risk Prediction System  
+# PharmaGuard: Pharmacogenomic Risk Prediction System
 **RIFT 2026 Hackathon – HealthTech / Precision Medicine Track**
 
+---
 ## 🔴 Problem Overview
-Adverse drug reactions (ADRs) cause over **100,000 deaths annually in the U.S.**, many preventable through pharmacogenomic testing. Genetic variations influence how patients metabolize medications; without proper analysis, clinicians may inadvertently prescribe drugs causing toxicity, treatment failure, or severe adverse reactions.
+Adverse drug reactions (ADRs) cause over **100,000 deaths annually in the U.S.**, many of which are preventable through pharmacogenomic testing. Genetic variations influence how patients metabolize medications; without proper analysis, clinicians may inadvertently prescribe drugs causing toxicity, treatment failure, or severe adverse reactions.
 
-**PharmaGuard** tackles this critical issue by providing an AI-powered web application that:  
+**PharmaGuard** addresses this critical problem by providing an AI-powered web application that:
 
 - Analyzes patient genetic data (VCF files)  
 - Infers pharmacogenomic phenotype  
 - Predicts personalized drug risks  
 - Provides clinically actionable recommendations  
-- Generates structured LLM-based explanations for physicians
+- Generates structured LLM-based explanations for physicians  
+
+---
 
 ## 🚀 Live Demo
-- **Live Application:** [https://teammoon-rift26.vercel.app](https://teammoon-rift26.vercel.app)  
+- **Live Application:** [https://teammoon-rift26.vercel.app]
 - **LinkedIn Demo Video:** [Add LinkedIn video link here]
 
-## 🏗 Architecture Overview
+---
 
-PharmaGuard uses a **modular, API-first architecture** separating deterministic pharmacogenomic computation from LLM-based explainability. This ensures **reliable risk scoring** while leveraging AI for physician-friendly interpretation.
+## 🏗 Architecture Overview
+PharmaGuard uses a **modular, API-first architecture** separating deterministic pharmacogenomic computation from LLM-based explainability. This ensures **reliable risk scoring** while providing physician-friendly interpretations.
 
 ### 🔄 System Flow
 VCF File Upload
-↓
+      ↓
 VCF Parsing (vcfpy)
-↓
+      ↓
 Variant Analysis
 (Gene → Star Alleles → Phenotype)
-↓
+      ↓
 Drug Rule Engine
-↓
+      ↓
 Risk Scoring Engine
-↓
+      ↓
 Structured JSON Output
-↓
+      ↓
 LLM Explanation Generation (OpenAI API)
-↓
+      ↓
 Final Clinical Report
 
-
+---
 ### 🧠 AI / LLM Strategy
-- Uses OpenAI `gpt-4o-mini` for clinical explanation generation  
+- Uses OpenAI `gpt-4o-mini` for **clinical explanation generation**  
 - **LLM does NOT determine risk** — all risk scoring is rule-based  
-- Structured JSON output ensures **interoperability**  
-- Provides **physician-friendly, actionable insights**
+- Outputs structured JSON for **interoperability**  
+- Provides physician-friendly, actionable insights  
+
+---
 
 ## 🧪 Core Features
 - Automated VCF parsing and variant extraction  
@@ -51,8 +57,10 @@ Final Clinical Report
 - Drug-specific rule engine for risk scoring  
 - AI-generated clinical explanation  
 - Structured, downloadable JSON outputs  
-- REST API backend with **FastAPI**  
-- Secure API key management
+- REST API backend (**FastAPI**)  
+- Secure API key management  
+
+---
 
 ## 🧰 Tech Stack
 
@@ -68,8 +76,9 @@ Final Clinical Report
 **Architecture**  
 - Modular rule engine  
 - Deterministic risk scoring  
-- LLM-based explainability
+- LLM-based explainability  
 
+---
 
 ## 📂 Project Structure
 TeamMoon_RIFT-26/
@@ -113,48 +122,91 @@ TeamMoon_RIFT-26/
 ├── .gitignore
 └── requirements.txt
 
+
+---
+
 ## ⚙ Installation Instructions
 
-### Clone Repository
+###  Clone Repository
 git clone <your-repo-link>
 cd <repo-folder>
-## Install Dependencies
-pip install fastapi uvicorn openai python-dotenv vcfpy
-## Add OpenAI API Key
-Create a .env file in backend/: OPENAI_API_KEY=your_openai_api_key_here
-## Run Backend
-From project root:uvicorn backend.app.main:app --reload
-## 📚 API Documentation
-Once running, visit Swagger UI:  http://127.0.0.1:8000/docs
-## Security
-- API keys in `.env` (gitignored)  
-- No hardcoded credentials  
-- Modular separation of AI and deterministic logic
-## 🌍 Deployment
-Used vercel for frontend
-Compatible with:  
-- Vercel, Netlify, Render  
-- AWS EC2 / Lambda  
-- Google Cloud / Azure  
 
+###  Install Dependencies
+py -m pip install fastapi uvicorn openai python-dotenv vcfpy
 
-## 👥 Team Members
-- **Blessy R & Mamathi Karthiyaini** – AI Integration & Genomics Logic  
-- **Mounika D G** – Backend Development  
-- **Priya V M** – Frontend / UI
+###  Add OpenAI API Key
+Create a .env file in backend/:
+OPENAI_API_KEY=your_openai_api_key_here
 
-## 🏆 Innovation Highlights
-- Hybrid **deterministic + AI** architecture  
-- Real-time pharmacogenomic risk prediction  
-- Structured, **LLM-generated clinical explanations**  
-- Scalable, secure REST API design
+###  Run Backend
+From project root:
+uvicorn backend.app.main:app --reload
+Windows:
+py -m uvicorn backend.app.main:app --reload
 
-  ## 🔮 Future Enhancements
-- Multi-gene pharmacogenomic support  
-- Expanded drug database & CPIC alignment  
-- Fine-tuned clinical LLM  
-- Patient-friendly reports & batch processing
+### 📚 API Documentation
 
-PharmaGuard demonstrates **how AI can enhance precision medicine** by combining pharmacogenomic rules with natural language clinical reasoning.  
+Once server is running, visit:
+http://127.0.0.1:8000/docs
 
-**RIFT 2026 Hackathon – Pharmacogenomics / Explainable AI Track**
+Endpoint: POST /process-vcf
+
+Upload a .vcf file
+
+Returns structured pharmacogenomic risk JSON
+
+### 🛡 Security
+
+API keys stored in .env (gitignored)
+
+No hardcoded credentials
+
+Modular separation of AI and deterministic logic
+
+---
+### 🌍 Deployment
+
+Frontend deployed on Vercel
+
+Backend compatible with: Vercel, Netlify, Render, AWS, Google Cloud, Azure
+
+Set environment variables in your hosting dashboard
+
+---
+### 👥 Team Members
+
+Blessy R & Mamathi Karthiyaini – AI Integration & Genomics Logic
+
+Mounika D G – Backend Development
+
+Priya V M – Frontend / UI
+
+---
+
+### 🏆 Innovation Highlights
+
+Hybrid deterministic + AI architecture
+
+Real-time pharmacogenomic risk prediction
+
+Structured LLM-generated clinical explanations
+
+Scalable and secure REST API design
+
+---
+
+### 🔮 Future Enhancements
+
+Multi-gene pharmacogenomic support
+
+Expanded drug database & CPIC alignment
+
+Fine-tuned clinical LLM
+
+Patient-friendly reports & batch processing
+
+---
+
+PharmaGuard demonstrates how AI can enhance precision medicine by combining pharmacogenomic rules with natural language clinical reasoning.
+
+RIFT 2026 Hackathon – Pharmacogenomics / Explainable AI Track
