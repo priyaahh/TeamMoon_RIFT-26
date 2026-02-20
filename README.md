@@ -15,7 +15,7 @@ Adverse drug reactions (ADRs) cause over **100,000 deaths annually in the U.S.**
 
 ## 🚀 Live Demo
 - **Live Application:** [https://teammoon-rift26.vercel.app]
-- **LinkedIn Demo Video:** [Add LinkedIn video link here]
+- **LinkedIn Demo Video:** [https://l1nk.dev/rift26teammoon]
 
 
 
@@ -195,6 +195,7 @@ Patient-friendly reports & batch processing
 PharmaGuard demonstrates how AI can enhance precision medicine by combining pharmacogenomic rules with natural language clinical reasoning.
 
 RIFT 2026 Hackathon – Pharmacogenomics / Explainable AI Track
+
 
 
 
