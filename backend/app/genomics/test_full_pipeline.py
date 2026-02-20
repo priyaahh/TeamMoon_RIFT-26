@@ -36,11 +36,6 @@ def build_final_json(variants, analyzed, rule_results, risk_score):
 
         "clinical_recommendation": rule_results[0] if rule_results else {},
 
-        "llm_generated_explanation": {
-            "summary": "",
-            "details": ""
-        },
-
         "quality_metrics": {
             "vcf_parsing_success": bool(variants),
             "variants_detected": len(variants)
@@ -49,8 +44,8 @@ def build_final_json(variants, analyzed, rule_results, risk_score):
 
 
 def main():
-    # 🔴 CHANGE ONLY THIS PATH
-    vcf_path = r"sample_vcfs\PGx_Test_600_Variants.vcf"
+    # 🔴 UPDATED VCF PATH
+    vcf_path = r"C:\Users\shakt\OneDrive\Desktop\RIFT\TeamMoon_RIFT-26\sample_vcfs\TC_P1_PATIENT_001_Normal.vcf"
 
     # STEP 1: Parse VCF
     variants = parse_vcf(vcf_path)
