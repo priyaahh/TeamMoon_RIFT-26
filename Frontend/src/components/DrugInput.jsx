@@ -24,28 +24,45 @@ export const DrugInput = ({
   const [showSuggestions, setShowSuggestions] = useState(false)
 
   const handleAddDrug = () => {
-    const trimmedValue = inputValue.trim().toUpperCase()
+    const rawValue = inputValue.trim()
 
-    if (!trimmedValue) {
+    if (!rawValue) {
       setErrors(['Please enter a drug name'])
       return
     }
 
-    if (drugs.includes(trimmedValue)) {
-      setErrors(['Drug already added'])
+    // Support comma-separated input
+    const inputDrugs = rawValue
+      .split(',')
+      .map(d => d.trim().toUpperCase())
+      .filter(d => d.length > 0)
+
+    const newlyAdded = []
+    const alreadyPresent = []
+
+    inputDrugs.forEach(drug => {
+      if (drugs.includes(drug) || newlyAdded.includes(drug)) {
+        alreadyPresent.push(drug)
+      } else {
+        newlyAdded.push(drug)
+      }
+    })
+
+    if (newlyAdded.length === 0 && alreadyPresent.length > 0) {
+      setErrors([alreadyPresent.length === 1 ? 'Drug already added' : 'All specified drugs are already added'])
       setInputValue('')
       return
     }
 
-    const newDrugs = [...drugs, trimmedValue]
+    const newDrugs = [...drugs, ...newlyAdded]
     const validation = validateDrugInput(newDrugs, supportedDrugs)
 
     if (validation.isValid || validation.errors.length === 0) {
       setDrugs(newDrugs)
       setInputValue('')
-      setErrors([])
+      setErrors(alreadyPresent.length > 0 ? [`Added new drugs, but skipped duplicates: ${alreadyPresent.join(', ')}`] : [])
       setWarnings(validation.warnings)
-      onDrugSelect(newDrugs)
+      if (onDrugSelect) onDrugSelect(newDrugs)
     } else {
       setErrors(validation.errors)
     }
@@ -130,7 +147,7 @@ export const DrugInput = ({
           <input
             type="text"
             className={`drug-search-input ${errors.length > 0 ? 'error' : ''}`}
-            placeholder="Search or type drug name..."
+            placeholder="Search or type drug names (comma separated)..."
             value={inputValue}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
@@ -151,7 +168,10 @@ export const DrugInput = ({
                 <button
                   key={index}
                   className="suggestion-item"
-                  onClick={() => handleSuggestionClick(drug)}
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // Prevent input losing focus
+                    handleSuggestionClick(drug);
+                  }}
                   type="button"
                 >
                   {drug}

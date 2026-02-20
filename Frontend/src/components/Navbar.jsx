@@ -15,9 +15,7 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/">
             Home
           </NavLink>
-          <NavLink className="nav-link" to="/platform">
-            Analysis
-          </NavLink>
+
           <NavLink className="nav-link" to="/vcf-upload">
             Upload
           </NavLink>
@@ -26,6 +24,9 @@ export const Navbar = () => {
           </NavLink>
           <NavLink className="nav-link" to="/results-display">
             Results
+          </NavLink>
+          <NavLink className="nav-link" to="/export-share">
+            Export
           </NavLink>
         </div>
 

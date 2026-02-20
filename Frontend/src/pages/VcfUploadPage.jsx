@@ -31,7 +31,7 @@ const VcfUploadPage = () => {
             <div className="feature-box">
               <FileUpload onFileSelect={handleFileSelect} />
               <p style={{ marginTop: '1rem', color: '#94a3b8', fontSize: '0.9rem', textAlign: 'center' }}>
-                Make sure your file is in .vcf or .vcf.gz format and does not exceed 50 MB.
+                Make sure your file is in .vcf or .vcf.gz format and does not exceed 5 MB.
               </p>
             </div>
 

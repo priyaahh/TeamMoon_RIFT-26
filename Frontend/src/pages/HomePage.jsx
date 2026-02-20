@@ -37,7 +37,7 @@ const HomePage = () => {
 
           <button
             className="hero-get-started-btn"
-            onClick={goTo('/platform')}
+            onClick={goTo('/vcf-upload')}
           >
             Ready to Get Started?
           </button>
@@ -50,14 +50,13 @@ const HomePage = () => {
           <h2>Why Pharmacogenomics Matters</h2>
           <div className="problem-content">
             <p>
-              Adverse drug reactions remain a leading preventable cause of mortality.
+              Adverse drug reactions kill over 100,000 Americans annually. Many of these deaths are preventable through pharmacogenomic testing — analyzing how genetic variants affect drug metabolism.
             </p>
             <p>
-              Genetic variation in drug-metabolizing enzymes directly impacts
-              treatment safety and effectiveness.
+              Our platform identifies pharmacogenomic variants across 6 critical genes: <strong>CYP2D6, CYP2C19, CYP2C9, SLCO1B1, TPMT, DPYD</strong>.
             </p>
             <p className="highlight">
-              Our platform combines genomics and AI to support safer prescribing.
+              We analyze genetic data and drug inputs to predict personalized risks and provide clinically actionable recommendations.
             </p>
           </div>
         </div>
@@ -66,28 +65,28 @@ const HomePage = () => {
       {/* PLATFORM SNAPSHOT */}
       <section className="platform-snapshot">
         <div className="container">
-          <h2>Platform Capabilities</h2>
+          <h2>What we provide</h2>
           <div className="snapshot-grid">
 
-            <div className="snapshot-card" onClick={goTo('/platform')}>
+            <div className="snapshot-card" onClick={goTo('/vcf-upload')}>
               <FaDna className="card-icon" />
               <h3>Genomic Variant Analysis</h3>
               <p>Advanced VCF parsing and classification</p>
             </div>
 
-            <div className="snapshot-card" onClick={goTo('/platform')}>
+            <div className="snapshot-card" onClick={goTo('/drug-input')}>
               <FaPills className="card-icon" />
               <h3>Drug-Gene Interaction Mapping</h3>
               <p>Pharmacogenomic association alignment</p>
             </div>
 
-            <div className="snapshot-card" onClick={goTo('/platform')}>
+            <div className="snapshot-card" onClick={goTo('/results-display')}>
               <FaChartBar className="card-icon" />
               <h3>Risk Classification Engine</h3>
               <p>Intelligent risk level assessment</p>
             </div>
 
-            <div className="snapshot-card" onClick={goTo('/platform')}>
+            <div className="snapshot-card" onClick={goTo('/ai-insights')}>
               <FaBrain className="card-icon" />
               <h3>AI Clinical Insights</h3>
               <p>Explainable and interpretable outputs</p>
