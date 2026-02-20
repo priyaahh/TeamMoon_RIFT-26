@@ -1,7 +1,6 @@
 # PharmaGuard: Pharmacogenomic Risk Prediction System
 **RIFT 2026 Hackathon – HealthTech / Precision Medicine Track**
 
----
 ## 🔴 Problem Overview
 Adverse drug reactions (ADRs) cause over **100,000 deaths annually in the U.S.**, many of which are preventable through pharmacogenomic testing. Genetic variations influence how patients metabolize medications; without proper analysis, clinicians may inadvertently prescribe drugs causing toxicity, treatment failure, or severe adverse reactions.
 
@@ -13,13 +12,12 @@ Adverse drug reactions (ADRs) cause over **100,000 deaths annually in the U.S.**
 - Provides clinically actionable recommendations  
 - Generates structured LLM-based explanations for physicians  
 
----
 
 ## 🚀 Live Demo
 - **Live Application:** [https://teammoon-rift26.vercel.app]
 - **LinkedIn Demo Video:** [Add LinkedIn video link here]
 
----
+
 
 ## 🏗 Architecture Overview
 PharmaGuard uses a **modular, API-first architecture** separating deterministic pharmacogenomic computation from LLM-based explainability. This ensures **reliable risk scoring** while providing physician-friendly interpretations.
@@ -34,14 +32,11 @@ PharmaGuard uses a **modular, API-first architecture** separating deterministic 
 7. LLM Explanation Generation (OpenAI API)
 8. Final Clinical Report
 
----
 ### 🧠 AI / LLM Strategy
 - Uses OpenAI `gpt-4o-mini` for **clinical explanation generation**  
 - **LLM does NOT determine risk** — all risk scoring is rule-based  
 - Outputs structured JSON for **interoperability**  
 - Provides physician-friendly, actionable insights  
-
----
 
 ## 🧪 Core Features
 - Automated VCF parsing and variant extraction  
@@ -51,8 +46,6 @@ PharmaGuard uses a **modular, API-first architecture** separating deterministic 
 - Structured, downloadable JSON outputs  
 - REST API backend (**FastAPI**)  
 - Secure API key management  
-
----
 
 ## 🧰 Tech Stack
 
@@ -70,9 +63,6 @@ PharmaGuard uses a **modular, API-first architecture** separating deterministic 
 - Deterministic risk scoring  
 - LLM-based explainability  
 
----
-
-## 📂 Project Structure
 ## 📂 Project Structure
 
 - **frontend/**
@@ -165,7 +155,6 @@ No hardcoded credentials
 
 Modular separation of AI and deterministic logic
 
----
 ### 🌍 Deployment
 
 Frontend deployed on Vercel
@@ -174,7 +163,6 @@ Backend compatible with: Vercel, Netlify, Render, AWS, Google Cloud, Azure
 
 Set environment variables in your hosting dashboard
 
----
 ### 👥 Team Members
 
 Blessy R & Mamathi Karthiyaini – AI Integration & Genomics Logic
@@ -182,8 +170,6 @@ Blessy R & Mamathi Karthiyaini – AI Integration & Genomics Logic
 Mounika D G – Backend Development
 
 Priya V M – Frontend / UI
-
----
 
 ### 🏆 Innovation Highlights
 
@@ -195,8 +181,6 @@ Structured LLM-generated clinical explanations
 
 Scalable and secure REST API design
 
----
-
 ### 🔮 Future Enhancements
 
 Multi-gene pharmacogenomic support
@@ -207,11 +191,11 @@ Fine-tuned clinical LLM
 
 Patient-friendly reports & batch processing
 
----
 
 PharmaGuard demonstrates how AI can enhance precision medicine by combining pharmacogenomic rules with natural language clinical reasoning.
 
 RIFT 2026 Hackathon – Pharmacogenomics / Explainable AI Track
+
 
 
 
